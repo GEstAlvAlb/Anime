@@ -1,0 +1,34 @@
+package alberto.com.anime.util;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+
+public class Util {
+    public static String formatearFecha (Date fecha){
+        SimpleDateFormat sdf =new SimpleDateFormat("dd.MM.yyyy");
+        return sdf.format(fecha);
+    }
+    public static Date parsearFecha (String fecha) throws ParseException {
+        SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+        return sdf.parse(fecha);
+
+    }
+
+    public static byte[]getBytes(Bitmap bitmap){
+        ByteArrayOutputStream bos=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,0,bos);
+        return bos.toByteArray();
+
+    }
+
+    public static Bitmap getBitmap(byte[] bytes){
+        return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+    }
+}
